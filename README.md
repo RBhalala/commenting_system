@@ -27,10 +27,10 @@ it will install and configure the following:
   
   #install all the required package
   - Using npm
-    ```shell
-    $ npm install
-    ```
+  ```shell
+     $ npm install
+  ```
   #Run project using below command
   ```shell
-    $ node app.js
-   ```
+     $ node app.js
+  ```
