@@ -8,7 +8,7 @@ it will install and configure the following:
 * EJS
 * Express
 
-##Prerequisities
+## Prerequisities
   To install Mongo DB use https://docs.mongodb.com/manual/administration/install-community/ 
   
   Start your Mongo server , Run below command to start the Mongo server:
@@ -18,19 +18,19 @@ it will install and configure the following:
   
 ## Running the installer
 
-  #The following commands must be executed in your local machine
+  # The following commands must be executed in your local machine
 
   Clone commenting_system with HTTP or download the project:
   ```shell
      $ git clone https://github.com/RBhalala/commenting_system.git
   ```
   
-  #install all the required package
+  # install all the required package
   - Using npm
   ```shell
      $ npm install
   ```
-  #Run project using below command
+  # Run project using below command
   ```shell
      $ node app.js
   ```
