@@ -24,6 +24,33 @@ app.get('/',function(req,res){
     }); 
 });
 
+app.get('/post/postlist',function(req,res){
+  Posts.find({}, function(err, posts) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render('post-list', { posts: posts });
+      }
+  }); 
+});
+
+app.get('/user/:session',function(req, res){
+  Users.findById(req.params.session, function (err, userDetails) {
+      if (err) {
+        console.log(err);
+      } else {
+        // res.render('post-detail', { userDetails: userDetails, sessionId: req.params.session });
+        app.session = userDetails;
+        Posts.find({}, function(err, posts) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render('post-list', { posts: posts });
+          }
+      }); 
+      }
+  }); 
+});
 
 app.get('/posts/detail/:id',function(req, res){
     Posts.findById(req.params.id, function (err, postDetail) {
@@ -31,30 +58,18 @@ app.get('/posts/detail/:id',function(req, res){
           console.log(err);
         } else {
             Comments.find({'postId':req.params.id}, function (err, comments) {
-                res.render('post-detail', { postDetail: postDetail, comments: comments, postId: req.params.id });
+                res.render('post-detail', { postDetail: postDetail, userDetails: app.session,  comments: comments, postId: req.params.id });
             });
         }
     }); 
 });
 
 app.get('/users/register', function(req, res) {
-  console.log('----req.body----', req.body)
-  Posts.find({}, function(err, posts) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('register', { posts: posts });
-    }
+  res.render('register');
 }); 
-  // Users.create(req.body, function(err, userDetails) {
-  //   if (err) {
-  //     res.status(502).send("Something Went Wrong");
-  //   } else {
-  //     res.render('posts')
-  //   }
-  // })
-})
-
+app.get('/users/login', function(req, res) {
+  res.render('login', {Users: Users});
+});
 // DB connection
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;

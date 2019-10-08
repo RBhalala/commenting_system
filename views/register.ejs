@@ -17,12 +17,13 @@
   %>
 
 </div> 
-Name: <input type= "text" id="name" >
-Contact Number: <input type= "text" id="contactNumber" >
-Age: <input type= "text" id="age" >
-Password: <input type= "password" id="password" >
+Name: <input type= "text" id="name" ><br />
+Contact Number: <input type= "text" id="contactNumber" ><br />
+Age: <input type= "text" id="age" ><br />
+EmailID: <input type= "text" id="email" ><br />
+Password: <input type= "password" id="password" ><br />
 
-<input type="submit" value="Send" id="send"> 
+<input type="submit" value="Register" id="send"> 
 </body>
 <script type="text/javascript">
   var socket = io();
@@ -30,12 +31,14 @@ Password: <input type= "password" id="password" >
       var name = $('#name').val();
       var contactNumber = $('#contactNumber').val();
       var age = $('#age').val();
+      var email = $('#email').val();
       var password = $('#password').val();
       if(name != '') {
-        var data = {'Name': name, 'Age': age, 'ContactNumber': contactNumber, 'Password': password};
+        var data = {'Name': name, 'Age': age, 'ContactNumber': contactNumber, 'EmailID': email, 'Password': password};
         $('.users').append("<p>" + ' Welcome : ' +name+"</p>");
         $('#name').val('');
       }
+      location.replace('localhost:3000/post/postlist')
       socket.emit('user',data);
     });
 

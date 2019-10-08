@@ -14,16 +14,20 @@
     if (typeof comments != 'undefined' && comments != null) {
       comments.forEach( function ( commentData ) {
         %>
-        <p> <%= commentData.commentBy %> : <%= commentData.comment %> </p>
+        <p> <%= commentData.commentBy %> : <%= commentData.comment %> 
+          <% if (commentData.commentBy === userDetails.Name) { %>
+            <input type="button" id="edit" value = "edit">
+          <% } %>
+        </p>
+        
       <% });
     } 
   %>
-
 </div>
 
 <textarea id="comment" rows="3" cols="50"></textarea></br>
 <input type="hidden" id="postId" value="<%= postId %>">
-<input type="hidden" id="commentBy" value="<%= postDetail.by %>">
+<input type="hidden" id="commentBy" value="<%= userDetails.Name %>">
 <input type="submit" value="Send" id="send"> 
 </body>
 <script type="text/javascript">
