@@ -15,6 +15,14 @@ it will install and configure the following:
   ```shell
   sudo service mongod start
   ```
+### Create database and collections
+  ```shell
+  use commenting_system
+  
+  db.createCollection("posts")
+  db.createCollection("comments")
+  db.createCollection("users")
+  ```
   
 ## Running the installer
 
